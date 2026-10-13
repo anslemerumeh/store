@@ -79,7 +79,6 @@ class ProductControllerTests {
     void testGetProductByIdNotFound() throws Exception {
         when(productRepository.findByIdWithOrders(99L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/products/99"))
-                .andExpect(status().isNotFound());
+        mockMvc.perform(get("/products/99")).andExpect(status().isNotFound());
     }
 }

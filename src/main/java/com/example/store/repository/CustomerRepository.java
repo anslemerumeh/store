@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @Query("SELECT DISTINCT c FROM Customer c LEFT JOIN FETCH c.orders WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :nameFragment, '%'))")
+    @Query(
+            "SELECT DISTINCT c FROM Customer c LEFT JOIN FETCH c.orders WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :nameFragment, '%'))")
     List<Customer> findByNameContaining(String nameFragment);
 
     @Query("SELECT DISTINCT c FROM Customer c LEFT JOIN FETCH c.orders")
